@@ -21,7 +21,7 @@
                             <router-link class="btn btn-success" :to="{name: 'Products-Show', params: {product_id: data.item.id}}">
                                 Show
                             </router-link>
-                            <button class="btn btn-danger" @click="deleteProduct">Delete</button>
+                            <button class="btn btn-danger" @click="deleteProduct(data.item.id)">Delete</button>
                         </template>
                     </b-table>
                 </b-col>
@@ -104,9 +104,9 @@
                     this.loader = false
                 });
             },
-            deleteProduct(){
-                this.$post.dispatch('deleteProduct', this.product).then(() => {
-                    alert("deleted")
+            deleteProduct(id){
+                this.$store.dispatch('deleteProduct', id).then(() => {
+                    this.$router.push('/products');
                 })
             }
         },

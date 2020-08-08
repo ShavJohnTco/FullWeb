@@ -63,9 +63,39 @@ export default {
                 })
             })
         },
-        deleteProduct(context, id) {
+        updateProduct(context, product){
             return new Promise((resolve, reject) => {
-                axios.post(`/products/${id}`, {_method: 'delete'}).then(res => {
+                axios.post(`/products/${product.id}`,
+                {
+                    _method: `put`,
+                    'name': product.name,
+                    'category': product.category,
+                    'description': product.description,
+                    'price': product.price,
+                    'thumbnail': product.thumbnail
+                }).then(res => {
+                    if(res.success) {
+                        context.dispatch('getProducts');
+                        resolve(res.data)
+                    }else {
+                        reject()
+                    }
+                }).catch(err => {
+                    reject(err.response)
+                })
+            })
+        },
+        deleteProduct(context, product) {
+            return new Promise((resolve, reject) => {
+                axios.post(`/products/${product}`,
+                {
+                    _method: 'delete',
+                    'name': product.name,
+                    'category': product.category,
+                    'description': product.description,
+                    'price': product.price,
+                    'thumbnail': product.thumbnail
+                }).then(res => {
                     if(res.success) {
                         context.dispatch('getProducts');
                         resolve(res.data)

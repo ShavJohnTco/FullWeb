@@ -4,6 +4,8 @@ import axios from 'axios';
 
 // modules
 import products from "./modules/products";
+import user from './modules/user';
+import auth from './modules/auth';
 Vue.use(Vuex);
 
 export default new Vuex.Store( {
@@ -30,6 +32,8 @@ export default new Vuex.Store( {
         }
     },
     modules: {
-        products: products
+        products: products,
+        user: user,
+        auth: auth
     }
 })
