@@ -81,8 +81,8 @@ class AuthController extends Controller
         ]);
     }
 
-    public function guard()
+    /*public function guard()
     {
         return Auth::guard();
-    }
+    }*/
 }
